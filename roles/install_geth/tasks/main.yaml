@@ -1,0 +1,10 @@
+- name: Add ethereum repository from PPA and install its signing key on Ubuntu target
+  become: true
+  ansible.builtin.apt_repository:
+    repo: ppa:ethereum/ethereum
+
+- name: Update repositories cache and install ethereum package
+  become: true
+  ansible.builtin.apt:
+    name: ethereum
+    update_cache: true

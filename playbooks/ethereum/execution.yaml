@@ -1,0 +1,7 @@
+---
+- name: Setup Ethereum execution client
+  hosts: ethereum
+
+  roles:
+    - role: roles/install_geth
+    - role: roles/start_geth
