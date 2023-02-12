@@ -1,0 +1,7 @@
+{
+  "is_mainnet": true,
+  "network_suffix": "mainnet",
+  "networking_port": "30303",
+  "auth_rpc_port": "8551",
+  "http_port": "8545"
+}

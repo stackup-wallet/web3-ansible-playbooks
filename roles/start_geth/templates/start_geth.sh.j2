@@ -1,0 +1,20 @@
+#!/bin/bash
+
+networking_port={{ networking_port | int }}
+auth_rpc_port={{ auth_rpc_port | int }}
+http_port={{ http_port | int }}
+jwtsecret_path=/tmp/jwtsecret_{{ network_suffix }}
+
+
+geth {{ '--goerli' if is_mainnet | bool is false }} \
+--port ${networking_port} \
+--authrpc.addr localhost \
+--authrpc.port ${auth_rpc_port} \
+--authrpc.vhosts localhost \
+--authrpc.jwtsecret ${jwtsecret_path} \
+--syncmode snap \
+--http \
+--http.port ${http_port} \
+--http.api personal,eth,net,web3,txpool,debug \
+--http.corsdomain "*" \
+--http.vhosts "*"

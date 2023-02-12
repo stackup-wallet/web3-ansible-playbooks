@@ -1,0 +1,17 @@
+[Unit]
+
+Description=Geth full-node for {{ network_suffix }}
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+
+WorkingDirectory=/home/ubuntu
+User=ubuntu
+ExecStart=/bin/bash start_geth_{{ network_suffix }}.sh
+Restart=always
+RestartSec=5s
+
+[Install]
+
+WantedBy=multi-user.target
