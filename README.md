@@ -25,7 +25,7 @@ Create an inventory file from the template:
 cp inventory.template.yaml inventory.yaml
 ```
 
-In the `inventory.yaml` file, enter the IP address or fully qualified domain name of each managed node. I should look something like this if you are using an AWS EC2 instance:
+In the `inventory.yaml` file, enter the IP address or fully qualified domain name of each managed node. It should look something like this if you are using an AWS EC2 instance:
 
 ```yaml
 ethereum:
@@ -61,9 +61,9 @@ node01 | SUCCESS => {
 
 # Commands
 
-Once you have your control node and `inventory.yaml` setup, you can run these commands for provisioning your remote nodes with web3 infrastructure.
+Once you have your control node and `inventory.yaml` setup, you can run these commands for provisioning your managed nodes with web3 infrastructure.
 
-All commands have both `mainnet` and `testnet` variant. For example:
+All commands have both `mainnet` and `testnet` variants. For example:
 
 ```bash
 # Setup Geth for mainnet
@@ -81,7 +81,7 @@ Playbooks for provisioning an Ethereum full-node using [Geth](https://geth.ether
 
 ### Setup execution client
 
-This command will install and run Geth on the remote node:
+This command will install and run Geth on all managed nodes in the `ethereum` group:
 
 ```bash
 make start-ethereum-execution-testnet

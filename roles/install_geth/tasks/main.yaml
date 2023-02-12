@@ -1,4 +1,4 @@
-- name: Add ethereum repository from PPA and install its signing key on Ubuntu target
+- name: Add ethereum repository from PPA
   become: true
   ansible.builtin.apt_repository:
     repo: ppa:ethereum/ethereum
