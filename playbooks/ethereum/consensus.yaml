@@ -1,0 +1,7 @@
+---
+- name: Setup Ethereum consensus client
+  hosts: ethereum
+
+  roles:
+    - role: roles/install_lighthouse
+    - role: roles/start_lighthouse

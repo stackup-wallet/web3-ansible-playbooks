@@ -2,7 +2,7 @@
 
 # Getting started
 
-A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_started/) playbooks for provisioning web3 infrastructure.
+A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_started/) playbooks for provisioning web3 infrastructure on Ubuntu servers.
 
 ## Table of contents
 
@@ -10,6 +10,7 @@ A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_starte
 - [Commands](#commands)
   - [Ethereum](#ethereum)
     - [Setup execution client](#setup-execution-client)
+    - [Setup consensus client](#setup-consensus-client)
 
 # Setup
 
@@ -85,4 +86,12 @@ This command will install and run Geth on all managed nodes in the `ethereum` gr
 
 ```bash
 make start-ethereum-execution-testnet
+```
+
+### Setup consensus client
+
+This command will install and run Lighthouse on all managed nodes in the `ethereum` group:
+
+```bash
+make start-ethereum-consensus-testnet
 ```

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+network={{ 'mainnet' if is_mainnet | bool else 'prater' }}
+beacon_node_networking_port={{ beacon_node_networking_port | int }}
+execution_endpoint=http://localhost:{{ auth_rpc_port | int }}
+jwtsecret_path=/tmp/jwtsecret_{{ network_suffix }}
+checkpoint_sync_url={{ checkpoint_sync_url }}
+
+
+lighthouse bn \
+--network ${network} \
+--port ${beacon_node_networking_port} \
+--execution-endpoint ${execution_endpoint} \
+--execution-jwt ${jwtsecret_path} \
+--checkpoint-sync-url ${checkpoint_sync_url} \
+--disable-deposit-contract-sync
