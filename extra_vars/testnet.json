@@ -3,5 +3,9 @@
   "network_suffix": "testnet",
   "networking_port": "30302",
   "auth_rpc_port": "8550",
-  "http_port": "8544"
+  "http_port": "8544",
+
+  "lighthouse_version": "v3.4.0",
+  "beacon_node_networking_port": "8999",
+  "checkpoint_sync_url": "https://prater.checkpoint.sigp.io"
 }

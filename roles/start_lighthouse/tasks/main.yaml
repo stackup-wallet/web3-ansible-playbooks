@@ -1,0 +1,24 @@
+- name: Copy start lighthouse script for {{ network_suffix }}
+  become: true
+  ansible.builtin.template:
+    src: start_lighthouse.sh.j2
+    dest: "/home/ubuntu/start_lighthouse_{{ network_suffix }}.sh"
+    owner: ubuntu
+    group: ubuntu
+    mode: "+x"
+
+- name: Copy lighthouse service for {{ network_suffix }}
+  become: true
+  ansible.builtin.template:
+    src: lighthouse.service.j2
+    dest: /lib/systemd/system/lighthouse_{{ network_suffix }}.service
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Start lighthouse service for {{ network_suffix }}
+  become: true
+  ansible.builtin.systemd:
+    name: lighthouse_{{ network_suffix }}
+    state: started
+    enabled: true

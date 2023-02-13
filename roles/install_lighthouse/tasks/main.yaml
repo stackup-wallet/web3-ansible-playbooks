@@ -1,0 +1,6 @@
+- name: Install Lighthouse consensus client from GitHub releases
+  become: true
+  ansible.builtin.unarchive:
+    src: https://github.com/sigp/lighthouse/releases/download/{{ lighthouse_version }}/lighthouse-{{ lighthouse_version }}-x86_64-unknown-linux-gnu.tar.gz
+    dest: /usr/local/bin
+    remote_src: true

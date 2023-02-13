@@ -3,5 +3,9 @@
   "network_suffix": "mainnet",
   "networking_port": "30303",
   "auth_rpc_port": "8551",
-  "http_port": "8545"
+  "http_port": "8545",
+
+  "lighthouse_version": "v3.4.0",
+  "beacon_node_networking_port": "9000",
+  "checkpoint_sync_url": "https://beaconstate-mainnet.chainsafe.io"
 }
