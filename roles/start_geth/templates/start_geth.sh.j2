@@ -3,6 +3,7 @@
 networking_port={{ networking_port | int }}
 auth_rpc_port={{ auth_rpc_port | int }}
 http_port={{ http_port | int }}
+http_addr={{ http_addr }}
 jwtsecret_path=/tmp/jwtsecret_{{ network_suffix }}
 
 
@@ -14,6 +15,7 @@ geth {{ '--goerli' if is_mainnet | bool is false }} \
 --authrpc.jwtsecret ${jwtsecret_path} \
 --syncmode snap \
 --http \
+--http.addr ${http_addr} \
 --http.port ${http_port} \
 --http.api personal,eth,net,web3,txpool,debug \
 --http.corsdomain "*" \
