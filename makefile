@@ -22,3 +22,8 @@ start-bundler-sidecar-testnet:
 	ansible-playbook \
 	-i inventory.yaml ./playbooks/bundler/sidecar.yaml \
 	--extra-vars @extra_vars/testnet.json
+
+start-bundler-sidecar-mainnet:
+	ansible-playbook \
+	-i inventory.yaml ./playbooks/bundler/sidecar.yaml \
+	--extra-vars @extra_vars/mainnet.json
