@@ -1,0 +1,25 @@
+- name: Checkout github.com/stackup-wallet/stackup-bundler for {{ bundler_version }}
+  become: true
+  ansible.builtin.git:
+    repo: "https://github.com/stackup-wallet/stackup-bundler.git"
+    dest: /home/ubuntu/stackup-bundler-{{ bundler_version }}
+    version: "{{ bundler_git_tag }}"
+  register: checkout
+
+- name: Build stackup-bundler from source
+  become: true
+  ansible.builtin.command:
+    cmd: /usr/local/go/bin/go build -o ./build/stackup-bundler main.go
+    chdir: /home/ubuntu/stackup-bundler-{{ bundler_version }}
+  when: checkout.changed
+  tags:
+    - skip_ansible_lint
+
+- name: Link stackup-bundler binary
+  become: true
+  ansible.builtin.file:
+    src: /home/ubuntu/stackup-bundler-{{ bundler_version }}/build/stackup-bundler
+    dest: /usr/bin/stackup-bundler-{{ bundler_version }}
+    owner: root
+    group: root
+    state: link

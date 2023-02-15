@@ -11,6 +11,8 @@ A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_starte
   - [Ethereum](#ethereum)
     - [Setup execution client](#setup-execution-client)
     - [Setup consensus client](#setup-consensus-client)
+  - [Bundler](#bundler)
+    - [Setup bundler sidecar](#setup-bundler-sidecar)
 
 # Setup
 
@@ -94,4 +96,18 @@ This command will install and run Lighthouse on all managed nodes in the `ethere
 
 ```bash
 make start-ethereum-consensus-testnet
+```
+
+---
+
+## Bundler
+
+Playbooks for provisioning an EIP-4337 Bundler using [stackup-bundler](https://github.com/stackup-wallet/stackup-bundler). This app runs as a sidecar to a full-node and will be executed on all groups.
+
+### Setup bundler sidecar
+
+This command requires a `.private_key` file in the repository root directory. It will be used by the bundler to sign transactions.
+
+```bash
+make start-bundler-sidecar-testnet
 ```

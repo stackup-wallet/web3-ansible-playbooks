@@ -1,0 +1,8 @@
+---
+- name: Setup bundler sidecar
+  hosts: ethereum
+
+  roles:
+    - role: roles/install_go
+    - role: roles/install_bundler
+    - role: roles/start_bundler
