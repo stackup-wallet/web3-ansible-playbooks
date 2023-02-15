@@ -3,6 +3,6 @@
 export ERC4337_BUNDLER_ETH_CLIENT_URL=http://localhost:{{ http_port | int }}
 export ERC4337_BUNDLER_PRIVATE_KEY={{ lookup("file", "../../.private_key", errors="strict") }}
 export ERC4337_BUNDLER_PORT={{ bundler_port | int }}
-export ERC4337_BUNDLER_DATA_DIRECTORY=/tmp/{{ bundler_version }}/stackup_bundler
+export ERC4337_BUNDLER_DATA_DIRECTORY=/tmp/{{ bundler_version }}_{{ network_suffix }}/stackup_bundler
 
 stackup-bundler-{{ bundler_version }} start --mode private
