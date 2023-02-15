@@ -1,0 +1,18 @@
+- name: Add Go to PATH
+  become: true
+  ansible.builtin.lineinfile:
+    dest: /home/ubuntu/.profile
+    line: "export PATH=$PATH:/usr/local/go/bin"
+
+- name: Update repositories cache and install build-essential
+  become: true
+  ansible.builtin.apt:
+    name: build-essential
+    update_cache: true
+
+- name: Install Go from {{ go_download_src }}
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ go_download_src }}"
+    dest: /usr/local
+    remote_src: true
