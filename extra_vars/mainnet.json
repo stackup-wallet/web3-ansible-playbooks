@@ -4,14 +4,9 @@
   "networking_port": "30303",
   "auth_rpc_port": "8551",
   "http_port": "8545",
-  "http_addr": "0.0.0.0",
 
-  "lighthouse_version": "v3.4.0",
   "beacon_node_networking_port": "9000",
   "checkpoint_sync_url": "https://beaconstate-mainnet.chainsafe.io",
 
-  "go_download_src": "https://go.dev/dl/go1.20.linux-amd64.tar.gz",
-  "bundler_git_tag": "v0.3.1",
-  "bundler_version": "v0.3",
   "bundler_port": "4337"
 }

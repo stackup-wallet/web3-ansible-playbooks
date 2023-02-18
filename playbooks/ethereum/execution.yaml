@@ -3,5 +3,5 @@
   hosts: ethereum
 
   roles:
-    - role: roles/install_geth
-    - role: roles/start_geth
+    - role: install_geth
+    - role: start_geth

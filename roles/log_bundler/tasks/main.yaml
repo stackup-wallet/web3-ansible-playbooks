@@ -1,0 +1,16 @@
+- name: Copy vector config for {{ network_suffix }}
+  become: true
+  ansible.builtin.template:
+    src: vector.toml.j2
+    dest: /etc/vector/stackup_bundler_{{ bundler_version }}_{{ network_suffix }}.toml
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Restart vector service
+  become: true
+  ansible.builtin.systemd:
+    name: vector
+    state: restarted
+    daemon_reload: true
+    enabled: true

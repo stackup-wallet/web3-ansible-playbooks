@@ -1,0 +1,11 @@
+{
+  "http_addr": "0.0.0.0",
+
+  "lighthouse_version": "v3.4.0",
+
+  "bundler_git_tag": "v0.3.1",
+  "bundler_version": "v0.3",
+
+  "go_download_src": "https://go.dev/dl/go1.20.linux-amd64.tar.gz",
+  "vector_download_src": "https://packages.timber.io/vector/0.27.0/vector-0.27.0-x86_64-unknown-linux-musl.tar.gz"
+}
