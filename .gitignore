@@ -1,2 +1,3 @@
 inventory.yaml
-.private_key
+secrets/*
+!secrets/common.template.json

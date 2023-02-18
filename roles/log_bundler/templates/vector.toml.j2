@@ -1,0 +1,20 @@
+[sources.stackup_bundler_{{ bundler_version.replace(".", "-") }}_{{ network_suffix }}_src]
+type = "journald"
+current_boot_only = true
+include_units = [ "stackup_bundler_{{ bundler_version }}_{{ network_suffix }}.service" ]
+
+[sinks.stackup_bundler_{{ bundler_version.replace(".", "-") }}_{{ network_suffix }}_sink]
+type = "loki"
+inputs = [ "stackup_bundler_{{ bundler_version.replace(".", "-") }}_{{ network_suffix }}_src" ]
+endpoint = "{{ loki_endpoint }}"
+
+[sinks.stackup_bundler_{{ bundler_version.replace(".", "-") }}_{{ network_suffix }}_sink.auth]
+strategy = "basic"
+user = "{{ loki_user }}"
+password = "{{ loki_password }}"
+
+[sinks.stackup_bundler_{{ bundler_version.replace(".", "-") }}_{{ network_suffix }}_sink.encoding]
+codec = "text"
+
+[sinks.stackup_bundler_{{ bundler_version.replace(".", "-") }}_{{ network_suffix }}_sink.labels]
+forwarder = "{{ inventory_hostname }}_stackup_bundler_{{ bundler_version }}_{{ network_suffix }}"

@@ -1,0 +1,92 @@
+- name: Download vector from archives
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ vector_download_src }}"
+    dest: /home/ubuntu
+    remote_src: true
+    list_files: true
+  register: archive_contents
+
+- name: Link vector binary
+  become: true
+  ansible.builtin.file:
+    src: /home/ubuntu/{{ archive_contents.files[0].replace("./", "") }}bin/vector
+    dest: /usr/bin/vector
+    owner: root
+    group: root
+    state: link
+
+- name: Create vector config directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/vector
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: "0755"
+
+- name: Create vector data directory
+  become: true
+  ansible.builtin.file:
+    path: /var/lib/vector
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: "0755"
+
+- name: Copy vector config file
+  become: true
+  ansible.builtin.template:
+    src: vector.toml.j2
+    dest: /etc/vector/vector.toml
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Copy vector service file
+  become: true
+  ansible.builtin.copy:
+    src: /home/ubuntu/{{ archive_contents.files[0].replace("./", "") }}etc/systemd/vector.service
+    dest: /lib/systemd/system/vector.service
+    remote_src: true
+    mode: "0644"
+
+- name: Set service user
+  become: true
+  ansible.builtin.lineinfile:
+    path: /lib/systemd/system/vector.service
+    search_string: "User=vector"
+    line: User=ubuntu
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Set service group
+  become: true
+  ansible.builtin.lineinfile:
+    path: /lib/systemd/system/vector.service
+    search_string: "Group=vector"
+    line: Group=ubuntu
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Set service restart
+  become: true
+  ansible.builtin.lineinfile:
+    path: /lib/systemd/system/vector.service
+    search_string: "Restart=no"
+    line: Restart=always
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Set service ExecStart to support multiple config files
+  become: true
+  ansible.builtin.lineinfile:
+    path: /lib/systemd/system/vector.service
+    search_string: "ExecStart=/usr/bin/vector"
+    line: ExecStart=/usr/bin/vector --config /etc/vector/*.toml
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"

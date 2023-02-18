@@ -1,4 +1,4 @@
 ethereum:
   hosts:
-    node01:
+    ethereum01:
       ansible_host: ""

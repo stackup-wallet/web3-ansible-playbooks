@@ -37,6 +37,12 @@ ethereum:
       ansible_host: "ubuntu@ec2-X-XXX-XXX-XXX.compute-1.amazonaws.com"
 ```
 
+Create a secrets file from the template:
+
+```bash
+cp secrets/common.template.json secrets/common.json
+```
+
 Make sure to add the ssh keys to your control node's `ssh-agent`:
 
 ```bash
@@ -106,8 +112,23 @@ Playbooks for provisioning an EIP-4337 Bundler using [stackup-bundler](https://g
 
 ### Setup bundler sidecar
 
-This command requires a `.private_key` file in the repository root directory. It will be used by the bundler to sign transactions.
+This command requires a `private_key` value in `secrets/common.json`. It will be used by the bundler to sign transactions.
 
 ```bash
 make start-bundler-sidecar-testnet
+```
+
+### Setup bundler log forwarding
+
+This command will use [Vector](https://vector.dev/) to forward bundler logs to [Grafana Loki](https://grafana.com/oss/loki/). It requires the following values in `secrets/common.json`.
+
+- `loki_endpoint`
+- `loki_user`
+- `loki_password`
+- `prometheus_endpoint`
+- `prometheus_user`
+- `prometheus_password`
+
+```bash
+make start-bundler-logging-testnet
 ```

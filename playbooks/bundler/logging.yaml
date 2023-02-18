@@ -1,0 +1,8 @@
+---
+- name: Setup bundler log forwarding
+  hosts: ethereum
+
+  roles:
+    - role: set_hostname
+    - role: install_vector
+    - role: log_bundler

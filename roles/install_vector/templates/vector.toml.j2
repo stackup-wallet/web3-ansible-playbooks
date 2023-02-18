@@ -1,0 +1,16 @@
+[sources.host_metrics_src]
+type = "host_metrics"
+scrape_interval_secs = 15
+
+[sinks.host_metrics_sink]
+type = "prometheus_remote_write"
+inputs = [ "host_metrics_src" ]
+endpoint = "{{ prometheus_endpoint }}/api/prom/push"
+
+[sinks.host_metrics_sink.healthcheck]
+enabled = false
+
+[sinks.host_metrics_sink.auth]
+strategy = "basic"
+user = "{{ prometheus_user }}"
+password = "{{ prometheus_password }}"

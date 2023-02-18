@@ -3,5 +3,5 @@
   hosts: ethereum
 
   roles:
-    - role: roles/install_lighthouse
-    - role: roles/start_lighthouse
+    - role: install_lighthouse
+    - role: start_lighthouse
