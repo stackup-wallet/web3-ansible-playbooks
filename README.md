@@ -13,6 +13,8 @@ A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_starte
     - [Setup consensus client](#setup-consensus-client)
   - [Bundler](#bundler)
     - [Setup bundler sidecar](#setup-bundler-sidecar)
+- [License](#license)
+- [Contact](#contact)
 
 # Setup
 
@@ -132,3 +134,13 @@ This command will use [Vector](https://vector.dev/) to forward bundler logs to [
 ```bash
 make start-bundler-logging-testnet
 ```
+
+---
+
+# License
+
+Distributed under the GPL-3.0 License. See [LICENSE](./LICENSE) for more information.
+
+# Contact
+
+Feel free to direct any technical related questions to the `dev-hub` channel in the [Stackup Discord](https://discord.gg/VTjJGvMNyW).
