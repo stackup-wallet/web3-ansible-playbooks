@@ -13,6 +13,8 @@ A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_starte
     - [Setup consensus client](#setup-consensus-client)
   - [Bundler](#bundler)
     - [Setup bundler sidecar](#setup-bundler-sidecar)
+- [License](#license)
+- [Contact](#contact)
 
 # Setup
 
