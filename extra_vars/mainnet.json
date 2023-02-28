@@ -8,5 +8,5 @@
   "beacon_node_networking_port": "9000",
   "checkpoint_sync_url": "https://beaconstate-mainnet.chainsafe.io",
 
-  "bundler_port": "4337"
+  "bundler_port": "4339"
 }
