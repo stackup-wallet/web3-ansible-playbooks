@@ -8,5 +8,5 @@
   "beacon_node_networking_port": "8999",
   "checkpoint_sync_url": "https://prater.checkpoint.sigp.io",
 
-  "bundler_port": "4336"
+  "bundler_port": "4338"
 }
