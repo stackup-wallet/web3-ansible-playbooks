@@ -1,0 +1,8 @@
+---
+- name: Setup Polygon bor client
+  hosts: polygon
+
+  roles:
+    - role: install_go
+    - role: install_bor
+    - role: start_bor

@@ -1,0 +1,25 @@
+- name: Checkout github.com/maticnetwork/bor
+  become: true
+  ansible.builtin.git:
+    repo: "https://github.com/maticnetwork/bor"
+    dest: /home/ubuntu/bor
+    version: "{{ bor_git_tag }}"
+  register: checkout
+
+- name: Build bor from source
+  become: true
+  ansible.builtin.command:
+    cmd: /usr/bin/make bor
+    chdir: /home/ubuntu/bor
+  when: checkout.changed
+  tags:
+    - skip_ansible_lint
+
+- name: Link bor binary
+  become: true
+  ansible.builtin.file:
+    src: /home/ubuntu/bor/build/bin/bor
+    dest: /usr/bin/bor
+    owner: root
+    group: root
+    state: link

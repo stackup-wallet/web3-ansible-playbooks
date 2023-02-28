@@ -8,5 +8,15 @@
   "beacon_node_networking_port": "9000",
   "checkpoint_sync_url": "https://beaconstate-mainnet.chainsafe.io",
 
+  "heimdall_seed": "f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,4fb1bc820088764a564d4f66bba1963d47d82329@44.232.55.71:26656,2eadba4be3ce47ac8db0a3538cb923b57b41c927@35.199.4.13:26656,3b23b20017a6f348d329c102ddc0088f0a10a444@35.221.13.28:26656,25f5f65a09c56e9f1d2d90618aa70cd358aa68da@35.230.116.151:26656",
+  "heimdall_prof_port": "6060",
+  "heimdall_grpc_port": "3132",
+  "heimdall_p2p_port": "26656",
+  "heimdall_tendermint_rpc_port": "26657",
+  "heimdall_rest_server_port": "1317",
+
+  "bor_bootnode": "enode://88116f4295f5a31538ae409e4d44ad40d22e44ee9342869e7d68bdec55b0f83c1530355ce8b41fbec0928a7d75a5745d528450d30aec92066ab6ba1ee351d710@159.203.9.164:30303",
+  "bor_grpc_port": "3134",
+
   "bundler_port": "4339"
 }

@@ -1,0 +1,33 @@
+- name: Create bor directory
+  become: true
+  ansible.builtin.file:
+    path: /home/ubuntu/.bor_{{ network_suffix }}
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: "0755"
+
+- name: Copy bor config for {{ network_suffix }}
+  become: true
+  ansible.builtin.template:
+    src: config.toml.j2
+    dest: /home/ubuntu/.bor_{{ network_suffix }}/config.toml
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Copy bor service for {{ network_suffix }}
+  become: true
+  ansible.builtin.template:
+    src: bor.service.j2
+    dest: /lib/systemd/system/bor_{{ network_suffix }}.service
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Start bor service for {{ network_suffix }}
+  become: true
+  ansible.builtin.systemd:
+    name: bor_{{ network_suffix }}
+    state: started
+    enabled: true

@@ -1,0 +1,141 @@
+- name: Checkout github.com/maticnetwork/launch
+  become: true
+  ansible.builtin.git:
+    repo: "https://github.com/maticnetwork/launch.git"
+    dest: /home/ubuntu/launch
+    version: "{{ matic_launch_git_commit }}"
+
+- name: Copy node launch directory
+  become: true
+  ansible.builtin.copy:
+    src: /home/ubuntu/launch/{{ 'mainnet-v1' if is_mainnet | bool else 'testnet-v4' }}/sentry/sentry/
+    dest: /home/ubuntu/node_{{ network_suffix }}
+    remote_src: true
+    owner: ubuntu
+    group: ubuntu
+    mode: "0755"
+  register: cp_node
+
+- name: Init heimdall home directory
+  become: true
+  ansible.builtin.command:
+    cmd: /usr/bin/heimdalld init --home /home/ubuntu/.heimdall_{{ network_suffix }}
+  when: cp_node.changed
+  tags:
+    - skip_ansible_lint
+
+- name: Recursively change ownership of heimdall home directory
+  become: true
+  ansible.builtin.file:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}
+    state: directory
+    recurse: yes
+    owner: ubuntu
+    group: ubuntu
+    mode: "0755"
+
+- name: Copy genesis file to heimdall home directory
+  become: true
+  ansible.builtin.copy:
+    src: /home/ubuntu/node_{{ network_suffix }}/heimdall/config/genesis.json
+    dest: /home/ubuntu/.heimdall_{{ network_suffix }}/config
+    remote_src: true
+    owner: ubuntu
+    group: ubuntu
+    mode: "0755"
+
+- name: Base config - set seed for {{ network_suffix }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}/config/config.toml
+    search_string: 'seeds = ""'
+    line: seeds = "{{ heimdall_seed }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Base config - set RPC listen addr for {{ network_suffix }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}/config/config.toml
+    search_string: 'laddr = "tcp://127.0.0.1:26657"'
+    line: laddr = "tcp://127.0.0.1:{{ heimdall_tendermint_rpc_port }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Base config - set P2P listen addr for {{ network_suffix }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}/config/config.toml
+    search_string: 'laddr = "tcp://0.0.0.0:26656"'
+    line: laddr = "tcp://0.0.0.0:{{ heimdall_p2p_port }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Base config - set profiling server listen addr for {{ network_suffix }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}/config/config.toml
+    search_string: 'prof_laddr = "localhost:6060"'
+    line: prof_laddr = "localhost:{{ heimdall_prof_port }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Heimdall config - set eth rpc url for {{ network_suffix }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}/config/heimdall-config.toml
+    search_string: 'eth_rpc_url = "http://localhost:9545"'
+    line: eth_rpc_url = "{{ ethereum_host_dns }}:{{ http_port }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Heimdall config - set bor rpc url for {{ network_suffix }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}/config/heimdall-config.toml
+    search_string: 'bor_rpc_url = "http://localhost:8545"'
+    line: bor_rpc_url = "http://localhost:{{ http_port }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Heimdall config - set tendermint rpc url for {{ network_suffix }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}/config/heimdall-config.toml
+    search_string: 'tendermint_rpc_url = "http://0.0.0.0:26657"'
+    line: tendermint_rpc_url = "http://0.0.0.0:{{ heimdall_tendermint_rpc_port }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Heimdall config - set heimdall rest server url for {{ network_suffix }}
+  become: true
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/.heimdall_{{ network_suffix }}/config/heimdall-config.toml
+    search_string: 'heimdall_rest_server = "http://0.0.0.0:1317"'
+    line: heimdall_rest_server = "http://0.0.0.0:{{ heimdall_rest_server_port }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Copy heimdalld service for {{ network_suffix }}
+  become: true
+  ansible.builtin.template:
+    src: heimdalld.service.j2
+    dest: /lib/systemd/system/heimdalld_{{ network_suffix }}.service
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Start heimdalld service for {{ network_suffix }}
+  become: true
+  ansible.builtin.systemd:
+    name: heimdalld_{{ network_suffix }}
+    state: started
+    enabled: true

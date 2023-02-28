@@ -16,3 +16,12 @@
     src: "{{ go_download_src }}"
     dest: /usr/local
     remote_src: true
+
+- name: Link Go binary for Makefile commands
+  become: true
+  ansible.builtin.file:
+    src: /usr/local/go/bin/go
+    dest: /usr/bin/go
+    owner: root
+    group: root
+    state: link

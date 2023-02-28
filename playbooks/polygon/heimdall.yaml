@@ -1,0 +1,8 @@
+---
+- name: Setup Polygon heimdall client
+  hosts: polygon
+
+  roles:
+    - role: install_go
+    - role: install_heimdall
+    - role: start_heimdall

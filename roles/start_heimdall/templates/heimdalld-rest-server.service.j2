@@ -1,0 +1,17 @@
+[Unit]
+
+Description=heimdalld-rest-server for {{ network_suffix }}
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+
+WorkingDirectory=/home/ubuntu
+User=ubuntu
+ExecStart=/usr/bin/heimdalld rest-server --home "/home/ubuntu/.heimdall_{{ network_suffix }}" --laddr "tcp://0.0.0.0:{{ heimdall_rest_server_port }}" --grpc-addr "0.0.0.0:{{ heimdall_grpc_port }}"
+Restart=always
+RestartSec=5s
+
+[Install]
+
+WantedBy=multi-user.target

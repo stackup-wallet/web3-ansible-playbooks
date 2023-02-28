@@ -2,3 +2,8 @@ ethereum:
   hosts:
     ethereum01:
       ansible_host: ""
+
+polygon:
+  hosts:
+    polygon01:
+      ansible_host: ""
