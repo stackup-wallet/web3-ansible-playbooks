@@ -20,5 +20,6 @@
   become: true
   ansible.builtin.systemd:
     name: stackup_bundler_{{ bundler_version }}_{{ network_suffix }}
-    state: started
+    state: restarted
+    daemon_reload: true
     enabled: true

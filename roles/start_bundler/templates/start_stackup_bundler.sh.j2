@@ -4,5 +4,7 @@ export ERC4337_BUNDLER_ETH_CLIENT_URL=http://localhost:{{ http_port | int }}
 export ERC4337_BUNDLER_PRIVATE_KEY={{ private_key }}
 export ERC4337_BUNDLER_PORT={{ bundler_port | int }}
 export ERC4337_BUNDLER_DATA_DIRECTORY=/tmp/{{ bundler_version }}_{{ network_suffix }}/stackup_bundler
+export ERC4337_BUNDLER_RELAYER_BANNED_THRESHOLD={{ bundler_relayer_banned_threshold | int }}
+export ERC4337_BUNDLER_RELAYER_BANNED_TIME_WINDOW={{ bundler_relayer_banned_time_window | int }}
 
 stackup-bundler-{{ bundler_version }} start --mode private
