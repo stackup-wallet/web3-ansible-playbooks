@@ -8,7 +8,6 @@ syncmode = "full"
 # gcmode = "full"
 # snapshot = true
 # ethstats = ""
-bootnode = "{{ bor_bootnode }}"
 
 # ["eth.requiredblocks"]
 
@@ -19,9 +18,9 @@ bootnode = "{{ bor_bootnode }}"
     # bind = "0.0.0.0"
     # nodiscover = false
     # nat = "any"
-    # [p2p.discovery]
+    [p2p.discovery]
         # v5disc = false
-        # bootnodes = []
+        bootnodes = ["{{ bor_bootnode }}"]
         # bootnodesv4 = []
         # bootnodesv5 = []
         # static-nodes = []

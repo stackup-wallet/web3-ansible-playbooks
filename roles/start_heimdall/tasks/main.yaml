@@ -138,4 +138,5 @@
   ansible.builtin.systemd:
     name: heimdalld_{{ network_suffix }}
     state: started
+    daemon_reload: true
     enabled: true

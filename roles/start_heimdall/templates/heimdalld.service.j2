@@ -12,6 +12,8 @@ ExecStart=/usr/bin/heimdalld start --home "/home/ubuntu/.heimdall_{{ network_suf
 --chain={{ 'mainnet' if is_mainnet | bool else 'mumbai' }} \
 --rest-server \
 --laddr "tcp://0.0.0.0:{{ heimdall_rest_server_port }}" \
+--node "tcp://localhost:{{ heimdall_tendermint_rpc_port }}" \
+--rpc.laddr "tcp://127.0.0.1:{{ heimdall_tendermint_rpc_port }}" \
 --grpc-addr "0.0.0.0:{{ heimdall_grpc_port }}"
 LimitNOFILE=65536
 Restart=always

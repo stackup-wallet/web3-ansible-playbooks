@@ -133,7 +133,7 @@ sudo service heimdalld_testnet stop
 
 rm -rf ~/.heimdall_testnet/data && mkdir ~/.heimdall_testnet/data
 
-wget -c https://snapshot-download.polygon.technology/heimdall-mumbai-2023-02-21.tar.gz -O - | tar -xzf - -C ~/.heimdall_testnet/data
+wget -c https://snapshot-download.polygon.technology/heimdall-mumbai-2023-02-28.tar.gz -O - | tar -xzf - -C ~/.heimdall_testnet/data
 ```
 
 Once downloaded, restart heimdall:
@@ -157,7 +157,7 @@ sudo service bor_testnet stop
 
 rm -rf ~/.bor_testnet/data/bor/chaindata && mkdir ~/.bor_testnet/data/bor/chaindata
 
-wget -c https://snapshot-download.polygon.technology/bor-mumbai-fullnode-2023-02-21.tar.gz -O - | tar -xzf - -C ~/.bor_testnet/data/bor/chaindata
+wget -c https://snapshot-download.polygon.technology/bor-mumbai-fullnode-2023-02-28.tar.gz -O - | tar -xzf - -C ~/.bor_testnet/data/bor/chaindata
 ```
 
 Once downloaded, restart bor:
