@@ -16,6 +16,7 @@ A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_starte
     - [Setup bor client](#setup-bor-client)
   - [Bundler](#bundler)
     - [Setup bundler sidecar](#setup-bundler-sidecar)
+    - [Setup bundler log forwarding](#setup-bundler-log-forwarding)
 - [License](#license)
 - [Contact](#contact)
 

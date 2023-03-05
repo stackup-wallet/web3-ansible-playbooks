@@ -1,6 +1,6 @@
 ---
 - name: Setup bundler log forwarding
-  hosts: ethereum
+  hosts: ethereum, polygon
 
   roles:
     - role: set_hostname
