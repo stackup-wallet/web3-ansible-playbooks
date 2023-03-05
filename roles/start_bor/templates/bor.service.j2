@@ -1,0 +1,17 @@
+[Unit]
+
+Description=bor for {{ network_suffix }}
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+
+WorkingDirectory=/home/ubuntu
+User=ubuntu
+ExecStart=/usr/bin/bor server -config "/home/ubuntu/.bor_{{ network_suffix }}/config.toml"
+Restart=always
+RestartSec=5s
+
+[Install]
+
+WantedBy=multi-user.target

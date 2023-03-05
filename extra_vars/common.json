@@ -3,6 +3,10 @@
 
   "lighthouse_version": "v3.4.0",
 
+  "heimdall_git_tag": "v0.3.0",
+  "bor_git_tag": "v0.3.3",
+  "matic_launch_git_commit": "fe86ba6cd16e5c36067a5ae49c0bad62ce8b1c3f",
+
   "bundler_git_tag": "v0.4.1",
   "bundler_version": "v0.4",
   "bundler_relayer_banned_threshold": "10",

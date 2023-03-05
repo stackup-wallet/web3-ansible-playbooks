@@ -11,6 +11,9 @@ A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_starte
   - [Ethereum](#ethereum)
     - [Setup execution client](#setup-execution-client)
     - [Setup consensus client](#setup-consensus-client)
+  - [Polygon](#polygon)
+    - [Setup heimdall client](#setup-heimdall-client)
+    - [Setup bor client](#setup-bor-client)
   - [Bundler](#bundler)
     - [Setup bundler sidecar](#setup-bundler-sidecar)
 - [License](#license)
@@ -104,6 +107,63 @@ This command will install and run Lighthouse on all managed nodes in the `ethere
 
 ```bash
 make start-ethereum-consensus-testnet
+```
+
+---
+
+## Polygon
+
+Playbooks for provisioning a Polygon full-node with [Heimdall](https://github.com/maticnetwork/heimdall) and [Bor](https://github.com/maticnetwork/bor). See the following links for the latest network values:
+
+- For latest seeds and bootnodes: https://monitor.stakepool.dev.br/
+- For latest snapshots: https://snapshots.polygon.technology/
+
+### Setup Heimdall client
+
+This command will install and run Heimdall on all managed nodes in the `polygon` group. It requires an `ethereum_host_dns` value in `secrets/common.json`.
+
+```bash
+make start-polygon-heimdall-testnet
+```
+
+To speed up sync, manually download the snapshots into `~/.heimdall_testnet/data`. See above for the latest snapshot url. The commands would look like this:
+
+```bash
+sudo service heimdalld_testnet stop
+
+rm -rf ~/.heimdall_testnet/data && mkdir ~/.heimdall_testnet/data
+
+wget -c HEIMDALL_SNAPSHOT_URL -O - | tar -xzf - -C ~/.heimdall_testnet/data
+```
+
+Once downloaded, restart heimdall:
+
+```bash
+sudo service heimdalld_testnet start
+```
+
+### Setup Bor client
+
+This command will install and run Bor on all managed nodes in the `polygon` group. Do not run this until Heimdall is synced. SSH into the node and run `curl localhost:26655/status` (`26657` for mainnet) and the value of `catching_up` should be false.
+
+```bash
+make start-polygon-bor-testnet
+```
+
+To speed up sync, manually download the snapshots into `~/.bor_testnet/data/bor/chaindata`. See above for the latest snapshot url. The commands would look like this:
+
+```bash
+sudo service bor_testnet stop
+
+rm -rf ~/.bor_testnet/data/bor/chaindata && mkdir ~/.bor_testnet/data/bor/chaindata
+
+wget -c BOR_SNAPSHOT_URL -O - | tar -xzf - -C ~/.bor_testnet/data/bor/chaindata
+```
+
+Once downloaded, restart bor:
+
+```bash
+sudo service bor_testnet start
 ```
 
 ---

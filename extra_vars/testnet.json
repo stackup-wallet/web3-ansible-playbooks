@@ -8,5 +8,15 @@
   "beacon_node_networking_port": "8999",
   "checkpoint_sync_url": "https://prater.checkpoint.sigp.io",
 
+  "heimdall_seed": "4cd60c1d76e44b05f7dfd8bab3f447b119e87042@54.147.31.250:26656,9dfc12d9f39257cefc3d57a4d7302586e59a994e@18.213.200.99:26656,b18bbe1f3d8576f4b73d9b18976e71c65e839149@34.226.134.117:26656,76167e82b93849cd658a49bff9482a937351f71e@109.123.244.56:26656,7a6c7b5d25b13ce3448b047dbebeb1a19cc2e092@18.213.200.99:26656",
+  "heimdall_prof_port": "6059",
+  "heimdall_grpc_port": "3131",
+  "heimdall_p2p_port": "26654",
+  "heimdall_tendermint_rpc_port": "26655",
+  "heimdall_rest_server_port": "1316",
+
+  "bor_bootnode": "[\"enode://095c4465fe509bd7107bbf421aea0d3ad4d4bfc3ff8f9fdc86f4f950892ae3bbc3e5c715343c4cf60c1c06e088e621d6f1b43ab9130ae56c2cacfd356a284ee4@18.213.200.99:30303\"]",
+  "bor_grpc_port": "3133",
+
   "bundler_port": "4338"
 }
