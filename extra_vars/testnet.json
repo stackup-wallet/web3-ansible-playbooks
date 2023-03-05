@@ -15,7 +15,7 @@
   "heimdall_tendermint_rpc_port": "26655",
   "heimdall_rest_server_port": "1316",
 
-  "bor_bootnode": "enode://095c4465fe509bd7107bbf421aea0d3ad4d4bfc3ff8f9fdc86f4f950892ae3bbc3e5c715343c4cf60c1c06e088e621d6f1b43ab9130ae56c2cacfd356a284ee4@18.213.200.99:30303",
+  "bor_bootnode": "[\"enode://095c4465fe509bd7107bbf421aea0d3ad4d4bfc3ff8f9fdc86f4f950892ae3bbc3e5c715343c4cf60c1c06e088e621d6f1b43ab9130ae56c2cacfd356a284ee4@18.213.200.99:30303\"]",
   "bor_grpc_port": "3133",
 
   "bundler_port": "4338"
