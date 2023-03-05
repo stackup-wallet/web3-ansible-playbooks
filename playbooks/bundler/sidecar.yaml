@@ -1,6 +1,6 @@
 ---
 - name: Setup bundler sidecar
-  hosts: ethereum
+  hosts: ethereum, polygon
 
   roles:
     - role: install_go
