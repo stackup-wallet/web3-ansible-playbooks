@@ -1,0 +1,41 @@
+- name: Add docker GPG key
+  become: true
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/docker.asc
+    mode: "0644"
+    force: true
+
+- name: Add docker repository from deb
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+
+- name: Update repositories cache and install docker package
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - python3
+      - python3-pip
+      - python3-docker
+    update_cache: true
+
+- name: Install PyYAML python package
+  become: true
+  ansible.builtin.pip:
+    name: pyyaml
+
+- name: Install docker-compose python package
+  become: true
+  ansible.builtin.pip:
+    name: docker-compose
+
+- name: Start docker service
+  become: true
+  ansible.builtin.service:
+    name: docker
+    state: started

@@ -7,3 +7,8 @@ polygon:
   hosts:
     polygon01:
       ansible_host: ""
+
+optimism:
+  hosts:
+    optimism01:
+      ansible_host: ""

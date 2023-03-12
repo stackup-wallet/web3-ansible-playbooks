@@ -1,0 +1,7 @@
+---
+- name: Setup Optimism node
+  hosts: optimism
+
+  roles:
+    - role: install_docker
+    - role: start_optimism
