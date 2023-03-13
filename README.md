@@ -43,10 +43,12 @@ ethereum:
       ansible_host: "ubuntu@ec2-X-XXX-XXX-XXX.compute-1.amazonaws.com"
 ```
 
-Create a secrets file from the template:
+Create secret files from the template:
 
 ```bash
-cp secrets/common.template.json secrets/common.json
+cp secrets/common.template.json secrets/common.json && \
+cp secrets/network.template.json secrets/mainnet.json && \
+cp secrets/network.template.json secrets/testnet.json
 ```
 
 Make sure to add the ssh keys to your control node's `ssh-agent`:
@@ -175,7 +177,7 @@ Playbooks for provisioning an EIP-4337 Bundler using [stackup-bundler](https://g
 
 ### Setup bundler sidecar
 
-This command requires a `private_key` value in `secrets/common.json`. It will be used by the bundler to sign transactions.
+This command requires a `private_key` value in `secrets/testnet.json`. It will be used by the bundler to sign transactions.
 
 ```bash
 make start-bundler-sidecar-testnet
