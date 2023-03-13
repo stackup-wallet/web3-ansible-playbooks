@@ -1,3 +1,4 @@
 inventory.yaml
 secrets/*
+!secrets/network.template.json
 !secrets/common.template.json

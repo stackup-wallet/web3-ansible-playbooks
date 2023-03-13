@@ -175,7 +175,7 @@ Playbooks for provisioning an EIP-4337 Bundler using [stackup-bundler](https://g
 
 ### Setup bundler sidecar
 
-This command requires a `private_key` value in `secrets/common.json`. It will be used by the bundler to sign transactions.
+This command requires a `private_key` value in `secrets/testnet.json`. It will be used by the bundler to sign transactions.
 
 ```bash
 make start-bundler-sidecar-testnet
