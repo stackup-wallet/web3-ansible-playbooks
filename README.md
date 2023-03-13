@@ -43,10 +43,12 @@ ethereum:
       ansible_host: "ubuntu@ec2-X-XXX-XXX-XXX.compute-1.amazonaws.com"
 ```
 
-Create a secrets file from the template:
+Create secret files from the template:
 
 ```bash
-cp secrets/common.template.json secrets/common.json
+cp secrets/common.template.json secrets/common.json && \
+cp secrets/network.template.json secrets/mainnet.json && \
+cp secrets/network.template.json secrets/testnet.json
 ```
 
 Make sure to add the ssh keys to your control node's `ssh-agent`:
