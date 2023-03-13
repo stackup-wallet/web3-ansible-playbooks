@@ -14,6 +14,8 @@ A collection of [Ansible](https://docs.ansible.com/ansible/latest/getting_starte
   - [Polygon](#polygon)
     - [Setup heimdall client](#setup-heimdall-client)
     - [Setup bor client](#setup-bor-client)
+  - [Optimism](#optimism)
+    - [Setup node](#setup-optimism-node)
   - [Bundler](#bundler)
     - [Setup bundler sidecar](#setup-bundler-sidecar)
     - [Setup bundler log forwarding](#setup-bundler-log-forwarding)
@@ -167,6 +169,18 @@ Once downloaded, restart bor:
 
 ```bash
 sudo service bor_testnet start
+```
+
+---
+
+## Optimism
+
+Playbooks for provisioning an Optimism full-node based on the [simple-optimism-node repository](https://github.com/smartcontracts/simple-optimism-node).
+
+### Setup Optimism node
+
+```bash
+make start-optimism-node-testnet
 ```
 
 ---

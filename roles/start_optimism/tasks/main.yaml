@@ -1,0 +1,24 @@
+- name: Checkout smartcontracts/simple-optimism-node for {{ network_suffix }}
+  become: true
+  ansible.builtin.git:
+    repo: "https://github.com/smartcontracts/simple-optimism-node"
+    dest: /home/ubuntu/simple-optimism-node_{{ network_suffix }}
+    version: "{{ optimism_git_tag }}"
+
+- name: Copy env file for {{ network_suffix }}
+  become: true
+  ansible.builtin.template:
+    src: env.j2
+    dest: /home/ubuntu/simple-optimism-node_{{ network_suffix }}/.env
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+# TODO: Fix task hanging even though all docker contains are started successfully.
+# Currently using a 180s timeout. Run again if fail.
+- name: Start node with docker compose for {{ network_suffix }}
+  become: true
+  community.docker.docker_compose:
+    project_src: /home/ubuntu/simple-optimism-node_{{ network_suffix }}
+    state: present
+  timeout: 180

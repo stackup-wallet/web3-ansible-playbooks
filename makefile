@@ -62,6 +62,20 @@ start-polygon-bor-testnet:
 	--extra-vars @extra_vars/common.json \
 	--extra-vars @extra_vars/testnet.json
 
+start-optimism-node-mainnet:
+	ansible-playbook \
+	-i inventory.yaml ./playbooks/optimism/node.yaml \
+	--extra-vars @secrets/common.json \
+	--extra-vars @extra_vars/common.json \
+	--extra-vars @extra_vars/mainnet.json
+
+start-optimism-node-testnet:
+	ansible-playbook \
+	-i inventory.yaml ./playbooks/optimism/node.yaml \
+	--extra-vars @secrets/common.json \
+	--extra-vars @extra_vars/common.json \
+	--extra-vars @extra_vars/testnet.json
+
 start-bundler-sidecar-mainnet:
 	ansible-playbook \
 	-i inventory.yaml ./playbooks/bundler/sidecar.yaml \

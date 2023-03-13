@@ -4,6 +4,7 @@
   "networking_port": "30302",
   "auth_rpc_port": "8550",
   "http_port": "8544",
+  "ws_port": "8546",
 
   "beacon_node_networking_port": "8999",
   "checkpoint_sync_url": "https://prater.checkpoint.sigp.io",
@@ -17,6 +18,20 @@
 
   "bor_bootnode": "[\"enode://095c4465fe509bd7107bbf421aea0d3ad4d4bfc3ff8f9fdc86f4f950892ae3bbc3e5c715343c4cf60c1c06e088e621d6f1b43ab9130ae56c2cacfd356a284ee4@18.213.200.99:30303\"]",
   "bor_grpc_port": "3133",
+
+  "optimism_dtl_port": "7877",
+  "optimism_healthcheck_metrics_port": "7296",
+  "optimism_fault_detector_metrics_port": "7297",
+  "optimism_healthcheck_bedrock_metrics_port": "7298",
+  "optimism_fault_detector_bedrock_metrics_port": "7299",
+  "optimism_prometheus_port": "9089",
+  "optimism_grafana_port": "2999",
+  "optimism_influxdb_port": "8085",
+  "optimism_torrent_ui_port": "8079",
+  "optimism_torrent_port": "6880",
+  "optimism_op_geth_http_port": "9991",
+  "optimism_op_geth_ws_port": "9992",
+  "optimism_reference_l2_node": "https://goerli.optimism.io",
 
   "bundler_port": "4338"
 }
